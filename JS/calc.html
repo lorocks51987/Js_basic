@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        h1 {
+            color: white;
+        }
+
+        body {
+            background-color: #2c2f36;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        div {
+            align-items: center;
+            justify-content: center;
+            display: inline-block;
+        }
+
+        .calculadora {
+            background-color: #3b3e47;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        #visor {
+            width: 65%;
+            height: 60px;
+            background-color: #22252d;
+            color: white;
+            font-size: 30px;
+            text-align: right;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .botoes {
+            display: grid;
+            grid-template-columns: repeat(4, 60px);
+            gap: 10px;
+            justify-content: center;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        button {
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btnNum {
+            background-color: #444857;
+            color: white;
+        }
+
+        .btnOper {
+            background-color: #f19a3e;
+            color: white;
+        }
+
+        .btnEspecial {
+            background-color: #ff4f4f;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        #btn0,
+        #btnbs {
+            width: 125px;
+            height: 60px;
+            font-size: 30px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            var visor = document.querySelector("#visor");
+            var V1 = "";
+            var V2 = "";
+            var oper = "";
+            var resultado = "";
+
+            var botoes = document.querySelectorAll(".btnNum");
+            for (var b of botoes) {
+                b.addEventListener("click", function () {
+                    visor.value += this.innerHTML;
+                });
+            }
+
+            var botaoOper = document.querySelectorAll(".btnOper");
+            for (var bop of botaoOper) {
+                bop.addEventListener("click", function () {
+                    oper = this.innerHTML;
+                    V1 = parseFloat(visor.value);
+                    visor.value = "";
+                });
+            }
+
+            var botaoIgual = document.querySelector("#btnig");
+            botaoIgual.addEventListener("click", function () {
+                V2 = parseFloat(visor.value);
+                resultado = eval(V1 + oper + V2);
+                visor.value = resultado;
+            });
+
+            var botaoLimpa = document.querySelector("#btnLimp");
+            botaoLimpa.addEventListener("click", function () {
+                visor.value = "";
+                V1 = "";
+                V2 = "";
+                oper = "";
+                resultado = "";
+            });
+
+            var botaoBs = document.querySelector("#btnbs");
+            botaoBs.addEventListener("click", function () {
+                visor.value = visor.value.slice(0, -1);
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <div>
+        <h1>Calculadora</h1>
+        <input type="text" name="visor" id="visor">
+        <br>
+
+        <button type="button" name="btnLimp" id="btnLimp" class="botao">C</button>
+        <button type="button" name="btnmais" id="btnmais2" class="btnOper">/</button>
+        <button type="button" name="btnbs" id="btnbs">⌫</button>
+        <br>
+
+        <button type="button" name="btn1" id="btn7" class="btnNum">7</button>
+        <button type="button" name="btn2" id="btn8" class="btnNum">8</button>
+        <button type="button" name="btn3" id="btn9" class="btnNum">9</button>
+        <button type="button" name="btnmais" id="btnmais4" class="btnOper">+</button>
+        <br>
+
+        <button type="button" name="btn4" id="btn4" class="btnNum">4</button>
+        <button type="button" name="btn5" id="btn5" class="btnNum">5</button>
+        <button type="button" name="btn6" id="btn6" class="btnNum">6</button>
+        <button type="button" name="btnmenos" id="btnmenos" class="btnOper">-</button>
+        <br>
+
+        <button type="button" name="btn3" id="btn3" class="btnNum">3</button>
+        <button type="button" name="btn2" id="btn2" class="btnNum">2</button>
+        <button type="button" name="btn1" id="btn1" class="btnNum">1</button>
+        <button type="button" name="btnmais" id="btnmais3" class="btnOper">*</button>
+        <br>
+
+        <button type="button" name="btn0" id="btn0" class="btnNum">0</button>
+        <button type="button" name="btnponto" id="btnponto" class="btnNum">.</button>
+        <button type="button" name="btnig" id="btnig">=</button>
+    </div>
+</body>
+
+</html>

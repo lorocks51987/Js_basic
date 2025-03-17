@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            function incrementa() {
+                var elemento = document.querySelector("#contador");
+                var valor = parseInt(elemento.innerHTML);
+                if (valor < 10) {  
+                    elemento.innerHTML = valor + 1;
+                }
+            }
+
+            function decrementa() {
+                var elemento = document.querySelector("#contador");
+                var valor = parseInt(elemento.innerHTML);
+                if (valor > 0) { 
+                    elemento.innerHTML = valor - 1;
+                }
+            }
+
+            var botaoinc = document.querySelector("#btninc");
+            var btndec = document.querySelector("#btndec");
+
+            botaoinc.addEventListener("click", incrementa);
+            btndec.addEventListener("click", decrementa);
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Contador</h1>
+    <p id="contador">0</p>
+    <button id="btninc">Incrementar</button>
+    <button id="btndec">Decrementar</button>
+</body>
+
+</html>
